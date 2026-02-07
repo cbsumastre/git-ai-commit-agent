@@ -1,0 +1,72 @@
+# Dependencies
+node_modules/
+*.log
+*.tmp
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Git files
+.git/
+.gitignore
+
+# Devcontainer files
+.devcontainer/
+Dockerfile
+
+# Local configuration
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Test files
+coverage/
+.nyc_output/
+
+# Source files (we only publish compiled dist/)
+src/
+*.ts
+!*.d.ts
+
+# TypeScript configuration
+tsconfig.json
+tsconfig.*.json
+
+# Temporary files
+tmp/
+temp/
+
+# Configuration files that shouldn't be published
+.git-ai-commit.json
+config.json
+
+# Documentation files that shouldn't be published
+CHANGELOG.md
+CONTRIBUTING.md
+LICENSE
+SECURITY.md
+
+# Source maps (except declaration maps which are useful for consumers)
+*.js.map
+!*.d.ts.map
+
+# Lock files (package-lock.json is included, but others should be excluded)
+yarn.lock
+pnpm-lock.yaml
+
+# Optional: If you have any other files that shouldn't be published, add them here

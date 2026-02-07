@@ -1,0 +1,53 @@
+{
+  "name": "git-ai-commit-agent",
+  "version": "1.0.0",
+  "description": "CLI tool for generating Git commit messages using AI (OpenAI, AWS Bedrock, Groq, etc)",
+  "type": "module",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "bin": {
+    "git-ai-commit-agent": "./dist/index.js"
+  },
+  "files": [
+    "dist/",
+    "README.md"
+  ],
+  "main": "./dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "tsx src/index.ts",
+    "build": "tsc",
+    "dev": "tsx src/index.ts",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "git",
+    "commit",
+    "ai",
+    "llm",
+    "openai",
+    "bedrock",
+    "groq",
+    "cli",
+    "typescript"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cbsumastre/git-ai-commit-agent.git"
+  },
+  "bugs": {
+    "url": "https://github.com/cbsumastre/git-ai-commit-agent/issues"
+  },
+  "homepage": "https://github.com/cbsumastre/git-ai-commit-agent#readme",
+  "author": "cbsumastre",
+  "license": "MIT",
+  "dependencies": {
+    "@aws-sdk/client-bedrock-runtime": "^3.981.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.19.32",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  }
+}
