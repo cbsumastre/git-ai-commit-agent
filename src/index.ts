@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 // index.ts
 // Simple Git AI Commit Message Agent (TypeScript)
 // Reads git diff, sends to LLM (AWS Bedrock or direct API), outputs ONLY commit message
