@@ -221,3 +221,8 @@ MIT
 ## 🤝 Contributing
 
 Contributions are welcome. Please open an issue or pull request.
+
+## 📝 Changelog
+
+### 2026-02-08
+- Translated all internal messages and comments from Spanish to English in the source code for consistency
