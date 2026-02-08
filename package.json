@@ -46,7 +46,7 @@
     "@aws-sdk/client-bedrock-runtime": "^3.981.0"
   },
   "devDependencies": {
-    "@types/node": "^20.19.32",
+    "@types/node": "^20.19.33",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3"
   }
