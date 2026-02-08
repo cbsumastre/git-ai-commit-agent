@@ -70,13 +70,13 @@ function getGitDiff(): string {
 }
 
 // ---------------- PROMPT ----------------
-const MAX_DIFF_CHARS = 8000; // Límite para evitar error 413
+const MAX_DIFF_CHARS = 8000; // Limit to avoid 413 error
 
 function buildPrompt(diff: string): string {
   let truncatedDiff = diff;
   if (diff.length > MAX_DIFF_CHARS) {
-    truncatedDiff = diff.substring(0, MAX_DIFF_CHARS) + '\n... [diff truncado por exceder tamaño máximo]';
-    console.warn(`⚠️  El diff de git excede el límite de ${MAX_DIFF_CHARS} caracteres. Se ha truncado para evitar el error 413.`);
+    truncatedDiff = diff.substring(0, MAX_DIFF_CHARS) + '\n... [diff truncated due to maximum size exceeded]';
+    console.warn(`⚠️  Git diff exceeds the limit of ${MAX_DIFF_CHARS} characters. It has been truncated to avoid the 413 error.`);
   }
 
   return `You are a senior software engineer.
