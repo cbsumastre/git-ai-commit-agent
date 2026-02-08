@@ -6,7 +6,7 @@
 import { execSync } from 'child_process';
 
 // ---------------- TYPES ----------------
-interface Config {
+export interface Config {
   provider?: 'direct' | 'bedrock' | undefined;
   model?: string | undefined;
 }
@@ -26,14 +26,14 @@ interface BedrockResponse {
 }
 
 // ---------------- CONFIG ----------------
-function getConfig(): Config {
+export function getConfig(): Config {
   return {
     provider: (process.env.GIT_AI_COMMIT_PROVIDER as 'direct' | 'bedrock' | undefined),
     model: process.env.GIT_AI_COMMIT_MODEL ?? undefined
   };
 }
 
-function validateConfig(config: Config): void {
+export function validateConfig(config: Config): void {
   const missing: string[] = [];
 
   if (!config.model) {
@@ -61,7 +61,7 @@ function validateConfig(config: Config): void {
 }
 
 // ---------------- GIT ----------------
-function getGitDiff(): string {
+export function getGitDiff(): string {
   try {
     return execSync('git diff --staged', { encoding: 'utf8' });
   } catch {
@@ -72,7 +72,7 @@ function getGitDiff(): string {
 // ---------------- PROMPT ----------------
 const MAX_DIFF_CHARS = 8000; // Limit to avoid 413 error
 
-function buildPrompt(diff: string): string {
+export function buildPrompt(diff: string): string {
   let truncatedDiff = diff;
   if (diff.length > MAX_DIFF_CHARS) {
     truncatedDiff = diff.substring(0, MAX_DIFF_CHARS) + '\n... [diff truncated due to maximum size exceeded]';
@@ -100,7 +100,7 @@ Format:
 }
 
 // ---------------- LLM PROVIDERS ----------------
-async function callDirectAPI(config: Config, prompt: string): Promise<string> {
+export async function callDirectAPI(config: Config, prompt: string): Promise<string> {
   const res = await fetch(process.env.LLM_ENDPOINT!, {
     method: 'POST',
     headers: {
@@ -121,7 +121,7 @@ async function callDirectAPI(config: Config, prompt: string): Promise<string> {
   return data.choices[0]?.message.content.trim() || '';
 }
 
-async function callBedrock(config: Config, prompt: string): Promise<string> {
+export async function callBedrock(config: Config, prompt: string): Promise<string> {
   const { BedrockRuntimeClient, InvokeModelCommand } = await import('@aws-sdk/client-bedrock-runtime');
 
   const clientConfig = process.env.AWS_REGION ? { region: process.env.AWS_REGION } : {};
@@ -141,7 +141,7 @@ async function callBedrock(config: Config, prompt: string): Promise<string> {
 }
 
 // ---------------- MAIN ----------------
-async function run(): Promise<void> {
+export async function run(): Promise<void> {
   const config = getConfig();
   validateConfig(config);
   const diff = getGitDiff();
@@ -185,7 +185,10 @@ async function run(): Promise<void> {
 }
 
 // ---------------- EXECUTION ----------------
-run().catch(error => {
-  console.error('Error:', error.message);
-  process.exit(1);
-});
+// Solo ejecutar si este es el módulo principal (no cuando se importa para testing)
+if (import.meta.url === `file://${process.argv[1]}`) {
+  run().catch(error => {
+    console.error('Error:', error.message);
+    process.exit(1);
+  });
+}
