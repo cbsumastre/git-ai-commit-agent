@@ -225,4 +225,10 @@ Contributions are welcome. Please open an issue or pull request.
 ## 📝 Changelog
 
 ### 2026-02-08
+- Added comprehensive test suite with Vitest framework
+  - Created test classes for configuration, git operations, prompts, and LLM providers
+  - Added integration tests for the main workflow
+  - Exported functions to enable testing
+- Added test scripts: `npm test`, `npm run test:run`, `npm run test:coverage`
+- Fixed module execution to support testing (prevent auto-execution when imported)
 - Translated all internal messages and comments from Spanish to English in the source code for consistency
