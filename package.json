@@ -1,6 +1,6 @@
 {
   "name": "git-ai-commit-agent",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "CLI tool for generating Git commit messages using AI (OpenAI, AWS Bedrock, Groq, etc)",
   "type": "module",
   "engines": {
