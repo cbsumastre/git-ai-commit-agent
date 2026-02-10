@@ -4,6 +4,8 @@
 // Reads git diff, sends to LLM (AWS Bedrock or direct API), outputs ONLY commit message
 
 import { execSync } from 'child_process';
+import { realpathSync } from 'fs';
+import { fileURLToPath } from 'url';
 
 // ---------------- TYPES ----------------
 export interface Config {
@@ -186,7 +188,9 @@ export async function run(): Promise<void> {
 
 // ---------------- EXECUTION ----------------
 // Solo ejecutar si este es el módulo principal (no cuando se importa para testing)
-if (import.meta.url === `file://${process.argv[1]}`) {
+const __filename = fileURLToPath(import.meta.url);
+const resolvedArgv = process.argv[1] ? realpathSync(process.argv[1]) : '';
+if (__filename === resolvedArgv) {
   run().catch(error => {
     console.error('Error:', error.message);
     process.exit(1);
